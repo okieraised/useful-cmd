@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Make a fresh clone of YOUR_REPO
 git clone YOUR_REPO
 cd YOUR_REPO
