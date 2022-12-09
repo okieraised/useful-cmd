@@ -30,3 +30,18 @@ SELECT pg_cancel_backend(10296)
 SELECT pg_terminate_backend(10296)
 SELECT pg_size_pretty(pg_total_relation_size('table_name'))
 ```
+
+### Consul
+```sh
+NAMESPACE="namespace"  
+# Add repo
+helm repo add hashicorp https://helm.releases.hashicorp.com  
+# Verify
+helm search repo hashicorp/consul  
+# Install helm
+helm install consul hashicorp/consul --set global.name=consul --create-namespace --namespace $NAMESPACE --values values.yaml
+# Upgrade Consul helm
+helm upgrade consul hashicorp/consul --namespace $NAMESPACE --values values.yaml
+# Get Consul token
+kubectl get secrets/consul-bootstrap-acl-token -n $NAMESPACE --template='{{.data.token | base64decode }}'
+```
