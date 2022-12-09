@@ -1,0 +1,52 @@
+global:
+  name: consul
+  datacenter: vinlab-dc
+  acls:
+    manageSystemACLs: true
+    enabled: true
+name: consul
+
+server:
+  image: consul
+
+  # The number of server agents to run. This determines the fault tolerance of
+  # the cluster. Please see the deployment table (https://consul.io/docs/internals/consensus#deployment-table)
+  # for more information.
+  replicas: 1
+  # For new clusters, this is the number of servers to wait for before performing
+  # the initial leader election and bootstrap of the cluster. This must be less
+  # than or equal to `server.replicas`. This value is only used
+  # when bootstrapping new clusters, it has no effect during ongoing cluster maintenance.
+  bootstrapExpect: 1
+  updatePartition: 0
+
+  securityContext:
+    runAsNonRoot: false
+    runAsGroup: 0
+    runAsUser: 0
+    fsGroup: 0
+  # The resource requests (CPU, memory, etc.)
+  # for each of the server agents. This should be a YAML map corresponding to a Kubernetes
+  # ResourceRequirements (https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#resourcerequirements-v1-core)
+  # object. NOTE: The use of a YAML string is deprecated.
+  resources:
+    requests:
+      memory: "100Mi"
+      cpu: "100m"
+    limits:
+      memory: "100Mi"
+      cpu: "100m"
+
+ui:
+  enabled: true
+  service:
+    type: 'NodePort'
+
+client:
+  resource:
+    requests:
+      memory: "100Mi"
+      cpu: "100m"
+    limits:
+      memory: "100Mi"
+      cpu: "100m"
