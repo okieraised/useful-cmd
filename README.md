@@ -45,3 +45,12 @@ helm upgrade consul hashicorp/consul --namespace $NAMESPACE --values values.yaml
 # Get Consul token
 kubectl get secrets/consul-bootstrap-acl-token -n $NAMESPACE --template='{{.data.token | base64decode }}'
 ```
+
+### Golang
+```go
+# Run unittest and get html coverage
+go test -coverprofile=coverage.out ./... ;    go tool cover -html=coverage.out
+
+# Publish new version of module
+GOPROXY=proxy.golang.org go list -m example.com/mymodule@v0.1.0
+```
