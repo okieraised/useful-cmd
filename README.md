@@ -54,3 +54,8 @@ go test -coverprofile=coverage.out ./... ;    go tool cover -html=coverage.out
 # Publish new version of module
 GOPROXY=proxy.golang.org go list -m example.com/mymodule@v0.1.0
 ```
+### Other
+```sh
+# From remote host
+scp -r remote_dir username@host(ip):local_dir
+```
