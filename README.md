@@ -29,6 +29,19 @@ SELECT * FROM pg_stat_activity WHERE state = 'active';
 SELECT pg_cancel_backend(10296)
 SELECT pg_terminate_backend(10296)
 SELECT pg_size_pretty(pg_total_relation_size('table_name'))
+
+REVOKE CONNECT ON DATABASE backend_vinlab_ai FROM PUBLIC, postgres
+
+SELECT 
+    pg_terminate_backend(pid) 
+FROM 
+    pg_stat_activity 
+WHERE 
+    -- don't kill my own connection!
+    pid <> pg_backend_pid()
+    -- don't kill the connections to other databases
+    AND datname = 'backend_vinlab_ai'
+    ;
 ```
 
 ### Consul
