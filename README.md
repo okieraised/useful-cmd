@@ -19,6 +19,19 @@ kubectl cp /tmp/foo <some-namespace>/<some-pod>:/tmp/bar
 
 # Copy /tmp/foo from a remote pod to /tmp/bar locally
 kubectl cp <some-namespace>/<some-pod>:/tmp/foo /tmp/bar
+
+# View current namespace
+kubectl config view | grep namespace
+
+# Set context
+kubectl config set-context --current --namespace=my-namespace
+
+# Terminating all pods stuck in terminating state
+for p in $(kubectl get pods | grep Terminating | awk '{print $1}'); do kubectl delete pod $p --grace-period=0 --force;done
+
+# Force delete a pod
+kubectl delete pod <Pod_Name> -n <namespace_name>  --grace-period=0  --force
+
 ```
 
 ### PostgresSQL
