@@ -4,6 +4,13 @@
 ```sh
 git submodule add
 git submodule update --init --recursive
+
+# remove cached submodule
+git rm --cached module_name
+
+# Add new submodule
+git submodule add git@gitlab.com:module_path
+
 ```
 
 ### Kubernetes
