@@ -86,6 +86,14 @@ go test -coverprofile=coverage.out ./... ;    go tool cover -html=coverage.out
 
 # Publish new version of module
 GOPROXY=proxy.golang.org go list -m example.com/mymodule@v0.1.0
+
+# Using specific version
+go mod init .
+go mod edit -require github.com/okieraised@v1.1.0-vinlab
+go get -v -t ./...   
+go build
+go install 
+
 ```
 ### Other
 ```sh
