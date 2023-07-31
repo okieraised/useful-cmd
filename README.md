@@ -115,3 +115,42 @@ go install
 # From remote host
 scp -r remote_dir username@host(ip):local_dir
 ```
+
+### Docker
+```sh
+# Remove image
+docker rmi <imageId/Name>
+
+# Force Remove Image
+docker rmi -f <imageId/Name>
+
+# Prune images
+docker image prune
+
+# Remove all images
+docker rmi $(docker images -q)
+
+# Delete container
+docker stop <containerId/Name>
+
+# Stop all running containers
+docker stop $(docker ps -aq)
+
+# Delete the container
+docker rm  <containerId/Name>
+
+# Force delete the container
+docker rm -f <containerId/Name>
+
+# Remove all containers
+docker rm $(docker ps -aq)
+
+# Remove all stopped containers
+docker rm $(docker ps -aq --filter  status="exited")
+```
+
+
+
+
+
+
