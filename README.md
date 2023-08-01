@@ -149,8 +149,13 @@ docker rm $(docker ps -aq)
 docker rm $(docker ps -aq --filter  status="exited")
 ```
 
-
-
-
+### PHP/Lavarel
+```sh
+Run composer install or php composer.phar install
+Run php artisan key:generate
+Run php artisan migrate
+Run php artisan db:seed to run seeders, if any.
+Run php artisan serve
+```
 
 
