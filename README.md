@@ -8,6 +8,9 @@ git submodule update --init --recursive
 # remove cached submodule
 git rm --cached module_name
 
+# remove and readd gitmodule
+git rm mod_name && rm -rf .git/modules/mod_name && git config --remove-section submodule.mod_name && git submodule add mod_name_url mod_name_path
+
 # Add new submodule
 git submodule add git@gitlab.com:module_path
 
