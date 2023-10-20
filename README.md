@@ -48,6 +48,9 @@ kubectl cp <some-namespace>/<some-pod>:/tmp/foo /tmp/bar
 # View current namespace
 kubectl config view | grep namespace
 
+# Create new namespace
+kubectl create namespace <name>
+
 # Set context
 kubectl config set-context --current --namespace=my-namespace
 
