@@ -60,6 +60,9 @@ for p in $(kubectl get pods | grep Terminating | awk '{print $1}'); do kubectl d
 # Force delete a pod
 kubectl delete pod <Pod_Name> -n <namespace_name>  --grace-period=0  --force
 
+# Install k3s
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --no-deploy traefik" sh
+
 ```
 
 ### PostgresSQL
