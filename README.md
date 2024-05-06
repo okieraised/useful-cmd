@@ -66,6 +66,9 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --no-deploy traefik" sh
 # Delete everything in a namespace
 kubectl delete all --all -n <<namespace>>
 
+# Delete all ```evicted``` pods
+kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains("Evicted")) | "kubectl delete pods \(.metadata.name) -n \(.metadata.namespace)"' | xargs -n 1 bash -c
+
 ```
 
 ### PostgresSQL
