@@ -31,6 +31,10 @@ git remote -v
 
 ```
 
+### Helm
+# Search
+helm search repo <<your_search_string>>
+
 ### Kubernetes
 ```yaml
 # Copy /tmp/foo_dir local directory to /tmp/bar_dir in a remote pod in the default namespace
