@@ -73,6 +73,11 @@ kubectl delete all --all -n <<namespace>>
 # Delete all ```evicted``` pods
 kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains("Evicted")) | "kubectl delete pods \(.metadata.name) -n \(.metadata.namespace)"' | xargs -n 1 bash -c
 
+# Force delete a namespace
+kubectl get namespace "namespace-to-delete" -o json \
+  | tr -d "\n" | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/" \
+  | kubectl replace --raw /api/v1/namespaces/namespace-to-delete/finalize -f -
+
 ```
 
 ### PostgresSQL
